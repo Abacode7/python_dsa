@@ -57,37 +57,41 @@ class LinkedList:
 
     def pop_first(self):
         if self.length == 0:
-            return  None
+            return None
         temp = self.head
-        self.head = self.head.next 
-        # Isolate popped item after removal
+        self.head = self.head.next
+        temp.next = None
         self.length -= 1
         if self.length == 0:
             self.tail = None
         return temp
 
+    def get(self, index):
+        if(index >= self.length): # Validate index not less than zero
+            return None
+        
+        i = 0
+        temp = self.head
+        while(i < index):
+            temp = temp.next
+            i += 1
+        
+        return temp
+        
 
 
 
-
-
-my_linked_list = LinkedList(2)
+my_linked_list = LinkedList(0)
 my_linked_list.append(1)
+my_linked_list.append(2)
+my_linked_list.append(3)
 
-
-# (2) Items - Returns 2 Node
-print(my_linked_list.pop_first().value)
-# (1) Item -  Returns 1 Node
-print(my_linked_list.pop_first().value)
-# (0) Items - Returns None
-print(my_linked_list.pop_first())
+print(my_linked_list.get(3).value)
 
 
 """
     EXPECTED OUTPUT:
     ----------------
-    2
-    1
-    None
+    3
 
 """
